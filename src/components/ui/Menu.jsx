@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { cn } from '@/utils/cn'
 import { useClickOutside } from '@/hooks/useClickOutside'
 import { Divider } from './Divider'
@@ -39,14 +39,6 @@ export function Menu({ trigger, items, align = 'right', width = 200 }) {
   const toggle = () => setOpen((isOpen) => !isOpen)
 
   useClickOutside(menuRef, close, open)
-
-  // TEMPORARY: closes the menu when the old hash router changes page.
-  // Removed in Step 4 when React Router takes over.
-  useEffect(() => {
-    if (!open) return
-    window.addEventListener('hashchange', close)
-    return () => window.removeEventListener('hashchange', close)
-  }, [open, close])
 
   const pick = (item) => {
     close()

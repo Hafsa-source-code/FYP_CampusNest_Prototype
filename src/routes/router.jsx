@@ -1,0 +1,142 @@
+import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { PATHS } from './paths'
+import { OldScreen } from './OldScreen'
+import { connectRouter } from '@/lib'
+
+import { RootLayout } from '@/layouts/RootLayout'
+import { PublicLayout } from '@/layouts/PublicLayout'
+import { StudentLayout } from '@/layouts/StudentLayout'
+import { OwnerLayout } from '@/layouts/OwnerLayout'
+import { AdminLayout } from '@/layouts/AdminLayout'
+import { NotFoundPage } from '@/pages/public/NotFoundPage'
+
+import { Landing } from '@/screens/Landing'
+import { Login, Signup, ForgotPassword, ResetPassword } from '@/screens/Auth'
+import { HostelSearch } from '@/screens/HostelSearch'
+import { HostelDetail } from '@/screens/HostelDetail'
+import { RoomDetail } from '@/screens/RoomDetail'
+import { Compare } from '@/screens/Compare'
+import { Wishlist } from '@/screens/Wishlist'
+import { MyInquiries } from '@/screens/MyInquiries'
+import { RoommateMatches } from '@/screens/RoommateMatches'
+import { RoommateProfile } from '@/screens/RoommateProfile'
+import { Community } from '@/screens/Community'
+import { CreatePost } from '@/screens/CreatePost'
+import { PostDetail } from '@/screens/PostDetail'
+import { MarketplaceItem } from '@/screens/MarketplaceItem'
+import { OwnerDashboard } from '@/screens/OwnerDashboard'
+import { OwnerMyHostels } from '@/screens/OwnerMyHostels'
+import { OwnerAddHostel } from '@/screens/OwnerAddHostel'
+import { OwnerManageRooms } from '@/screens/OwnerManageRooms'
+import { OwnerInquiries } from '@/screens/OwnerInquiries'
+import { OwnerReviews } from '@/screens/OwnerReviews'
+import { AdminModerationQueue } from '@/screens/AdminModerationQueue'
+import { AdminUsers } from '@/screens/AdminUsers'
+
+/**
+ * The map of the whole app: which address shows which page, inside which layout.
+ * handle.section = which menu item is highlighted on that page.
+ */
+export const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    children: [
+      // ── Public pages (no menu) ─────────────────────────────
+      {
+        element: <PublicLayout />,
+        children: [
+          { path: PATHS.home, element: <Landing /> },
+          { path: PATHS.login, element: <Login /> },
+          {
+            path: PATHS.signup,
+            element: <OldScreen render={(_, query) => <Signup initialRole={query.get('role') ?? undefined} />} />,
+          },
+          { path: PATHS.forgotPassword, element: <ForgotPassword /> },
+          { path: PATHS.resetPassword, element: <ResetPassword /> },
+          { path: '*', element: <NotFoundPage /> },
+        ],
+      },
+
+      // ── Student area ───────────────────────────────────────
+      {
+        path: PATHS.student.root,
+        element: <StudentLayout />,
+        children: [
+          { index: true, element: <Navigate to={PATHS.student.search} replace /> },
+          { path: PATHS.student.search, handle: { section: 'search' }, element: <HostelSearch /> },
+          {
+            path: PATHS.student.hostel,
+            handle: { section: 'search' },
+            element: <OldScreen render={(p) => <HostelDetail id={Number(p.id)} />} />,
+          },
+          {
+            path: PATHS.student.room,
+            handle: { section: 'search' },
+            element: <OldScreen render={(p) => <RoomDetail hostelId={Number(p.id)} typeId={Number(p.type)} />} />,
+          },
+          { path: PATHS.student.compare, handle: { section: 'compare' }, element: <Compare /> },
+          { path: PATHS.student.wishlist, handle: { section: 'wishlist' }, element: <Wishlist /> },
+          { path: PATHS.student.inquiries, handle: { section: 'inquiries' }, element: <MyInquiries /> },
+          {
+            path: PATHS.student.inquiry,
+            handle: { section: 'inquiries' },
+            element: <OldScreen render={(p) => <MyInquiries selectedId={Number(p.id)} />} />,
+          },
+          { path: PATHS.student.roommates, handle: { section: 'roommates' }, element: <RoommateMatches /> },
+          { path: PATHS.student.roommateProfile, handle: { section: 'roommates' }, element: <RoommateProfile /> },
+          { path: PATHS.student.community, handle: { section: 'community' }, element: <Community /> },
+          { path: PATHS.student.newPost, handle: { section: 'community' }, element: <CreatePost /> },
+          {
+            path: PATHS.student.post,
+            handle: { section: 'community' },
+            element: <OldScreen render={(p) => <PostDetail id={Number(p.id)} />} />,
+          },
+          {
+            path: PATHS.student.marketItem,
+            handle: { section: 'community' },
+            element: <OldScreen render={(p) => <MarketplaceItem id={Number(p.id)} />} />,
+          },
+        ],
+      },
+
+      // ── Hostel owner area ──────────────────────────────────
+      {
+        path: PATHS.owner.root,
+        element: <OwnerLayout />,
+        children: [
+          { index: true, element: <Navigate to={PATHS.owner.dashboard} replace /> },
+          { path: PATHS.owner.dashboard, handle: { section: 'dashboard' }, element: <OwnerDashboard /> },
+          { path: PATHS.owner.hostels, handle: { section: 'hostels' }, element: <OwnerMyHostels /> },
+          { path: PATHS.owner.newHostel, handle: { section: 'hostels' }, element: <OwnerAddHostel /> },
+          {
+            path: PATHS.owner.editHostel,
+            handle: { section: 'hostels' },
+            element: <OldScreen render={(p) => <OwnerAddHostel editId={Number(p.id)} />} />,
+          },
+          { path: PATHS.owner.rooms, handle: { section: 'rooms' }, element: <OwnerManageRooms /> },
+          { path: PATHS.owner.inquiries, handle: { section: 'inquiries' }, element: <OwnerInquiries /> },
+          {
+            path: PATHS.owner.inquiry,
+            handle: { section: 'inquiries' },
+            element: <OldScreen render={(p) => <OwnerInquiries selectedId={Number(p.id)} />} />,
+          },
+          { path: PATHS.owner.reviews, handle: { section: 'reviews' }, element: <OwnerReviews /> },
+        ],
+      },
+
+      // ── Admin area ─────────────────────────────────────────
+      {
+        path: PATHS.admin.root,
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <Navigate to={PATHS.admin.moderation} replace /> },
+          { path: PATHS.admin.moderation, handle: { section: 'moderation' }, element: <AdminModerationQueue /> },
+          { path: PATHS.admin.users, handle: { section: 'users' }, element: <AdminUsers /> },
+        ],
+      },
+    ],
+  },
+])
+
+// Lets the old screens' navigate('/s/...') calls drive React Router (see lib.jsx)
+connectRouter(router)

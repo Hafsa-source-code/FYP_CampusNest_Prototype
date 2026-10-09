@@ -1,50 +1,53 @@
-import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { PATHS } from './routes/paths'
 
-// ─────────────────────────────────────────────────────────────
-// TEMPORARY BRIDGE: old imports pass through to the new files.
-// Screens still import from here; each one switches to the new
-// path when we move it. Delete this whole section when unused.
-// ─────────────────────────────────────────────────────────────
+// ═════════════════════════════════════════════════════════════════
+// TEMPORARY BRIDGE FILE. Old screens import these; each screen
+// switches to the real imports when it's rebuilt in Step 5.
+// Delete this whole file when nothing imports it anymore.
+// ═════════════════════════════════════════════════════════════════
+
 export { cn as cx } from './utils/cn'
 export { formatPrice as rs, getInitials as initials } from './utils/formatters'
 export { IMG, HOSTEL_PHOTOS, ROOM_PHOTOS } from './mocks/images'
 
-// ─────────────────────────────────────────────────────────────
-// OLD HASH ROUTER: replaced by React Router in Step 4.
-// ─────────────────────────────────────────────────────────────
-function readHash() {
-  const raw = window.location.hash.replace(/^#/, '') || '/'
-  const [path, query = ''] = raw.split('?')
-  return { path: path || '/', query: new URLSearchParams(query) }
+// ── Old page addresses → new ones ────────────────────────────────
+// Old screens still say navigate('/s/search'); the app now lives at
+// '/student/search'. These rules translate the old address to the new one.
+
+const RENAMED_PAGES = {
+  '/forgot': PATHS.forgotPassword,
+  '/reset': PATHS.resetPassword,
 }
 
+const RENAMED_AREAS = [
+  ['/s/', '/student/'],
+  ['/o/', '/owner/'],
+  ['/a/', '/admin/'],
+]
+
+function toNewAddress(oldAddress) {
+  const [path, query] = oldAddress.split('?')
+  let newPath = RENAMED_PAGES[path] ?? path
+  const area = RENAMED_AREAS.find(([oldStart]) => newPath.startsWith(oldStart))
+  if (area) newPath = area[1] + newPath.slice(area[0].length)
+  return query ? `${newPath}?${query}` : newPath
+}
+
+// ── navigate(): change page from anywhere ─────────────────────────
+let routerNavigate = () => {}
+
+/** Called once by routes/router.jsx so navigate() can use React Router. */
+export function connectRouter(router) {
+  routerNavigate = router.navigate
+}
+
+export function navigate(oldAddress) {
+  routerNavigate(toNewAddress(oldAddress))
+}
+
+// ── useRoute(): old way of reading the address bar ────────────────
 export function useRoute() {
-  const [route, setRoute] = useState(readHash)
-  useEffect(() => {
-    const onChange = () => {
-      setRoute(readHash())
-      window.scrollTo(0, 0)
-    }
-    window.addEventListener('hashchange', onChange)
-    return () => window.removeEventListener('hashchange', onChange)
-  }, [])
-  return route
-}
-
-export function navigate(to) {
-  if (window.location.hash.replace(/^#/, '') === to) return
-  window.location.hash = to
-}
-
-/** Match "/s/hostel/:id" against "/s/hostel/4" → { id: '4' } */
-export function match(pattern, path) {
-  const p = pattern.split('/').filter(Boolean)
-  const a = path.split('/').filter(Boolean)
-  if (p.length !== a.length) return null
-  const params = {}
-  for (let i = 0; i < p.length; i++) {
-    if (p[i].startsWith(':')) params[p[i].slice(1)] = decodeURIComponent(a[i])
-    else if (p[i] !== a[i]) return null
-  }
-  return params
+  const location = useLocation()
+  return { path: location.pathname, query: new URLSearchParams(location.search) }
 }
