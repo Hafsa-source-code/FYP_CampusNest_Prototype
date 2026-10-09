@@ -7,7 +7,6 @@ import { ROLES } from '@/utils/constants'
 import { connectRouter } from '@/lib'
 
 import { RootLayout } from '@/layouts/RootLayout'
-import { PublicLayout } from '@/layouts/PublicLayout'
 import { StudentLayout } from '@/layouts/StudentLayout'
 import { OwnerLayout } from '@/layouts/OwnerLayout'
 import { AdminLayout } from '@/layouts/AdminLayout'
@@ -49,24 +48,19 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       // ── Public pages (no menu) ─────────────────────────────
+      { path: PATHS.home, element: <Landing /> },
+      { path: PATHS.logout, element: <LogoutPage /> },
       {
-        element: <PublicLayout />,
+        // Only for people NOT logged in; others go to their home page
+        element: <GuestRoute />,
         children: [
-          { path: PATHS.home, element: <Landing /> },
-          { path: PATHS.logout, element: <LogoutPage /> },
-          {
-            // Only for people NOT logged in; others go to their home page
-            element: <GuestRoute />,
-            children: [
-              { path: PATHS.login, element: <LoginPage /> },
-              { path: PATHS.signup, element: <SignupPage /> },
-              { path: PATHS.forgotPassword, element: <ForgotPasswordPage /> },
-              { path: PATHS.resetPassword, element: <ResetPasswordPage /> },
-            ],
-          },
-          { path: '*', element: <NotFoundPage /> },
+          { path: PATHS.login, element: <LoginPage /> },
+          { path: PATHS.signup, element: <SignupPage /> },
+          { path: PATHS.forgotPassword, element: <ForgotPasswordPage /> },
+          { path: PATHS.resetPassword, element: <ResetPasswordPage /> },
         ],
       },
+      { path: '*', element: <NotFoundPage /> },
 
       // ── Student area ───────────────────────────────────────
       {

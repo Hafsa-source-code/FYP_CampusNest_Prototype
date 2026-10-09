@@ -1,14 +1,14 @@
-import { Outlet } from 'react-router-dom'
-import { OwnerShell } from '@/components/OwnerShell'
-import { useActiveSection } from '@/routes/useActiveSection'
+import { OwnerHostelPicker } from '@/features/owner-listings/components/OwnerHostelPicker'
+import { useOwnerNavCounts } from '@/features/owner-listings/hooks/useOwnerNavCounts'
+import { OWNER_NAV } from '@/routes/navigation'
+import { ConsoleLayout } from './ConsoleLayout'
 
-/** Navy side menu + the current hostel-owner page. */
+/** Hostel-owner console: the shared console frame + owner menu with counts. */
 export function OwnerLayout() {
-  const section = useActiveSection()
+  const counts = useOwnerNavCounts()
+  const links = OWNER_NAV.map((link) => ({ ...link, count: counts[link.section] }))
 
   return (
-    <OwnerShell active={section}>
-      <Outlet />
-    </OwnerShell>
+    <ConsoleLayout area="Owner" areaIcon="building" links={links} context={<OwnerHostelPicker />} />
   )
 }

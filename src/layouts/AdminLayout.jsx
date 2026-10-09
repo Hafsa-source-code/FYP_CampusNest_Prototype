@@ -1,14 +1,11 @@
-import { Outlet } from 'react-router-dom'
-import { AdminShell } from '@/components/OwnerShell'
-import { useActiveSection } from '@/routes/useActiveSection'
+import { useOpenReportsCount } from '@/features/admin/hooks/useOpenReportsCount'
+import { ADMIN_NAV } from '@/routes/navigation'
+import { ConsoleLayout } from './ConsoleLayout'
 
-/** Navy side menu + the current admin page. */
+/** Admin console: the shared console frame + admin menu with counts. */
 export function AdminLayout() {
-  const section = useActiveSection()
+  const counts = { moderation: useOpenReportsCount() }
+  const links = ADMIN_NAV.map((link) => ({ ...link, count: counts[link.section] }))
 
-  return (
-    <AdminShell active={section}>
-      <Outlet />
-    </AdminShell>
-  )
+  return <ConsoleLayout area="Admin" areaIcon="shield" links={links} />
 }

@@ -42,16 +42,7 @@ export function connectRouter(router) {
   routerNavigate = router.navigate
 }
 
-const APP_AREAS = ['/student', '/owner', '/admin']
-
 export function navigate(oldAddress) {
-  // The old menus' "Log out" buttons just went to '/'. Inside the app areas,
-  // '/' only ever means "log out", so send those clicks to the logout page.
-  const insideApp = APP_AREAS.some((area) => window.location.pathname.startsWith(area))
-  if (oldAddress === '/' && insideApp) {
-    routerNavigate(PATHS.logout)
-    return
-  }
   routerNavigate(toNewAddress(oldAddress))
 }
 
