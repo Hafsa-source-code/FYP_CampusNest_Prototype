@@ -10,6 +10,7 @@ export const PATHS = {
   signup: '/signup',
   forgotPassword: '/forgot-password',
   resetPassword: '/reset-password',
+  logout: '/logout',
 
   student: {
     root: '/student',

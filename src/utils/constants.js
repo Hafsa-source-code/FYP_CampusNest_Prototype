@@ -1,0 +1,12 @@
+// App-wide fixed values. Must match the backend's values exactly.
+
+export const ROLES = {
+  STUDENT: 'Student',
+  OWNER: 'Hostel Owner',
+  ADMIN: 'Admin',
+}
+
+export const USER_STATUS = {
+  ACTIVE: 'Active',
+  BANNED: 'Banned',
+}
