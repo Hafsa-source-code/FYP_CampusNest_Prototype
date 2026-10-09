@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "rootDir": "src",
+    "outDir": "converted",
+    "noEmit": false,
+    "noEmitOnError": false,
+    "skipLibCheck": true,
+    "noCheck": true,
+    "isolatedModules": false,
+    "removeComments": false
+  },
+  "include": ["src"]
+}
