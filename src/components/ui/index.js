@@ -1,4 +1,5 @@
-// One place to import any UI piece from:
+// What this file does:
+// The list of every design-system piece, so pages can import them from one place.
 //   import { Button, Card, Modal } from '@/components/ui'
 
 export { Avatar } from './Avatar'
@@ -30,6 +31,7 @@ export { Select } from './Select'
 export { Stars } from './Stars'
 export { StatTile } from './StatTile'
 export { StatusBadge } from './StatusBadge'
+export { StepHeading } from './StepHeading'
 export { Switch } from './Switch'
 export { Table } from './Table'
 export { Td } from './Td'

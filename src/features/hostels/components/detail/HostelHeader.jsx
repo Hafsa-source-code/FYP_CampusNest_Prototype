@@ -1,28 +1,14 @@
-import { Link } from 'react-router-dom'
+// What this file does:
+// The top of the hostel page: breadcrumb, Share and Save buttons, hostel name,
+// rating, number of verified stays, and address.
+
 import { Button, Icon } from '@/components/ui'
 import { toast } from '@/components/feedback'
+import { Breadcrumb } from '@/components/navigation/Breadcrumb'
 import { SaveHostelButton } from '@/features/wishlist/components/SaveHostelButton'
 import { useCampus } from '../../hooks/useCampus'
 import { searchLink } from '../../utils/hostelLinks'
 import { HostelRating } from '../HostelRating'
-
-/** "← Find a hostel › Model Town › Green Court Hostel" */
-function Breadcrumb({ area, hostelName }) {
-  const { campus } = useCampus()
-
-  return (
-    <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 text-small text-muted">
-      <Link to={searchLink(campus)} className="inline-flex items-center gap-1.5 hover:text-ink">
-        <Icon name="arrowLeft" size={14} />
-        Find a hostel
-      </Link>
-      <Icon name="chevronRight" size={14} className="text-subtle" />
-      <span className="hidden sm:inline">{area}</span>
-      <Icon name="chevronRight" size={14} className="hidden text-subtle sm:inline" />
-      <span className="truncate font-medium text-ink">{hostelName}</span>
-    </nav>
-  )
-}
 
 /** Copies the page address so the student can send it to someone. */
 function ShareButton() {
@@ -38,12 +24,17 @@ function ShareButton() {
   )
 }
 
-/** Top of the hostel page: breadcrumb, Share/Save, name, rating, verified stays, address. */
 export function HostelHeader({ hostel }) {
+  const { campus } = useCampus()
+  const breadcrumb = [
+    { label: 'Find a hostel', to: searchLink(campus) },
+    { label: hostel.name },
+  ]
+
   return (
     <>
       <div className="flex items-center justify-between gap-4">
-        <Breadcrumb area={hostel.area} hostelName={hostel.name} />
+        <Breadcrumb items={breadcrumb} />
         <div className="flex shrink-0 gap-2">
           <ShareButton />
           <SaveHostelButton hostelId={hostel.id} variant="pill" />

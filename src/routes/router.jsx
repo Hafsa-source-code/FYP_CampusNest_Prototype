@@ -1,3 +1,7 @@
+// What this file does:
+// The map of the whole app: which web address shows which page, inside which layout,
+// and which roles (Student / Owner / Admin) are allowed to open it.
+
 import { Navigate, createBrowserRouter } from 'react-router-dom'
 import { PATHS } from './paths'
 import { OldScreen } from './OldScreen'
@@ -18,9 +22,9 @@ import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage'
 import { LogoutPage } from '@/pages/auth/LogoutPage'
 import { HostelSearchPage } from '@/pages/student/HostelSearchPage'
 import { HostelDetailPage } from '@/pages/student/HostelDetailPage'
+import { RoomDetailPage } from '@/pages/student/RoomDetailPage'
 
 import { Landing } from '@/screens/Landing'
-import { RoomDetail } from '@/screens/RoomDetail'
 import { Compare } from '@/screens/Compare'
 import { Wishlist } from '@/screens/Wishlist'
 import { MyInquiries } from '@/screens/MyInquiries'
@@ -39,10 +43,7 @@ import { OwnerReviews } from '@/screens/OwnerReviews'
 import { AdminModerationQueue } from '@/screens/AdminModerationQueue'
 import { AdminUsers } from '@/screens/AdminUsers'
 
-/**
- * The map of the whole app: which address shows which page, inside which layout.
- * handle.section = which menu item is highlighted on that page.
- */
+// handle.section = which menu item is highlighted on that page.
 export const router = createBrowserRouter([
   {
     element: <RootLayout />,
@@ -84,11 +85,7 @@ export const router = createBrowserRouter([
               {
                 path: PATHS.student.room,
                 handle: { section: 'search' },
-                element: (
-                  <OldScreen
-                    render={(p) => <RoomDetail hostelId={Number(p.id)} typeId={Number(p.type)} />}
-                  />
-                ),
+                element: <RoomDetailPage />,
               },
               { path: PATHS.student.compare, handle: { section: 'compare' }, element: <Compare /> },
               {

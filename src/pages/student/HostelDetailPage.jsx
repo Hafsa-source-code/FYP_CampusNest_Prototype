@@ -1,3 +1,8 @@
+// What this file does:
+// The hostel page (/student/hostel/:id). It only puts the pieces together:
+// header and photos on top, then tabbed sections (Overview, Rooms, Location, Reviews)
+// on the left and the price card on the right (a bottom bar on phones).
+
 import { useParams } from 'react-router-dom'
 import { Container } from '@/components/ui'
 import { DETAIL_SECTIONS } from '@/features/hostels/constants'
@@ -6,7 +11,7 @@ import { DetailSection } from '@/features/hostels/components/detail/DetailSectio
 import { HostelGallery } from '@/features/hostels/components/detail/HostelGallery'
 import { HostelHeader } from '@/features/hostels/components/detail/HostelHeader'
 import { HostelLocation } from '@/features/hostels/components/detail/HostelLocation'
-import { HostelNotFound } from '@/features/hostels/components/detail/HostelNotFound'
+import { HostelNotFound } from '@/features/hostels/components/HostelNotFound'
 import { HostelOverview } from '@/features/hostels/components/detail/HostelOverview'
 import { HostelRating } from '@/features/hostels/components/HostelRating'
 import { MobilePriceBar } from '@/features/hostels/components/detail/MobilePriceBar'
@@ -20,7 +25,6 @@ import { scrollToSection } from '@/utils/scrollToSection'
 const { overview, rooms, location, reviews } = DETAIL_SECTIONS
 const TABS = Object.values(DETAIL_SECTIONS)
 
-/** One hostel: header + photos, then tabbed sections on the left and the price card on the right. */
 export function HostelDetailPage() {
   const { id } = useParams()
   const hostel = useHostelDetail(Number(id))
