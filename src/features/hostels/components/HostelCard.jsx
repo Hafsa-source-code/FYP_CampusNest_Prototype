@@ -1,8 +1,9 @@
-import { generatePath, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { cn } from '@/utils/cn'
 import { CompareCheckbox } from '@/features/compare/components/CompareCheckbox'
 import { SaveHostelButton } from '@/features/wishlist/components/SaveHostelButton'
-import { PATHS } from '@/routes/paths'
+import { useCampus } from '../hooks/useCampus'
+import { hostelLink } from '../utils/hostelLinks'
 import { HostelCardBadges } from './HostelCardBadges'
 import { HostelCardInfo } from './HostelCardInfo'
 
@@ -14,7 +15,8 @@ import { HostelCardInfo } from './HostelCardInfo'
  */
 export function HostelCard({ hostel, showCompare = true, unavailable = false }) {
   const navigate = useNavigate()
-  const open = () => !unavailable && navigate(generatePath(PATHS.student.hostel, { id: hostel.id }))
+  const { campus } = useCampus()
+  const open = () => !unavailable && navigate(hostelLink(hostel.id, campus))
 
   return (
     <article

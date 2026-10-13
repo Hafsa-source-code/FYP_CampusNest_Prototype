@@ -3,6 +3,9 @@
 /** Universities students can search near (the backend's University table). */
 export const UNIVERSITIES = ['PU New Campus', 'PU Old Campus']
 
+/** Name of the address-bar value that remembers the chosen campus: /student/search?uni=... */
+export const CAMPUS_PARAM = 'uni'
+
 /** Room types, as shown to students → the value stored in the database. */
 export const ROOM_TYPE_OPTIONS = [
   { label: 'Single', value: 'Single' },
@@ -46,3 +49,11 @@ export const FACILITY_ICONS = {
 }
 
 export const DEFAULT_FACILITY_ICON = 'check'
+
+/** The sections of the hostel detail page, in order. The tabs and the sections share these ids. */
+export const DETAIL_SECTIONS = {
+  overview: { id: 'overview', label: 'Overview' },
+  rooms: { id: 'rooms', label: 'Rooms' },
+  location: { id: 'location', label: 'Location' },
+  reviews: { id: 'reviews', label: 'Reviews' },
+}

@@ -3,13 +3,13 @@ import { SORT_OPTIONS, UNIVERSITIES } from '../constants'
 
 /** Search page header: title + result count on the left; search, Filters, campus and sort on the right. */
 export function SearchToolbar({ search, resultCount, filterCount, onOpenFilters }) {
-  const { university, setUniversity, text, setText, sort, setSort } = search
+  const { campus, setCampus, text, setText, sort, setSort } = search
 
   return (
     <div className="mb-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
       <div className="min-w-0">
         <h1 className="text-heading font-semibold leading-tight tracking-tight text-ink">
-          Hostels near <span className="text-brand-700">{university}</span>
+          Hostels near <span className="text-brand-700">{campus}</span>
         </h1>
         <p className="mt-0.5 text-body text-muted">
           <span className="tabular font-semibold text-ink">{resultCount}</span>{' '}
@@ -37,8 +37,8 @@ export function SearchToolbar({ search, resultCount, filterCount, onOpenFilters 
           <Select
             icon="graduation"
             aria-label="Campus"
-            value={university}
-            onChange={(event) => setUniversity(event.target.value)}
+            value={campus}
+            onChange={(event) => setCampus(event.target.value)}
           >
             {UNIVERSITIES.map((name) => (
               <option key={name}>{name}</option>

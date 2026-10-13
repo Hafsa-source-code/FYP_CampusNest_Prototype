@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { DISTANCE_LIMITS, ROOM_TYPE_OPTIONS, SORT_OPTIONS, UNIVERSITIES } from '../constants'
+import { DISTANCE_LIMITS, ROOM_TYPE_OPTIONS, SORT_OPTIONS } from '../constants'
 import { filterHostels } from '../utils/filterHostels'
+import { useCampus } from './useCampus'
 import { useVerifiedHostels } from './useHostelSummaries'
 
 const EMPTY_FILTERS = {
@@ -26,13 +27,14 @@ function rentLabel(min, max) {
 /**
  * Everything the search page needs: the campus, search text, filters,
  * sort, the matching hostels, and the "active filter" chips.
+ * The campus comes from the address bar (see useCampus).
  * The landing page can pre-fill campus and max rent: /student/search?uni=...&max=...
  */
 export function useHostelSearch() {
   const [query] = useSearchParams()
   const hostels = useVerifiedHostels()
 
-  const [university, setUniversity] = useState(query.get('uni') ?? UNIVERSITIES[0])
+  const { campus, setCampus } = useCampus()
   const [text, setText] = useState('')
   const [sort, setSort] = useState(SORT_OPTIONS.NEAREST)
   const [filters, setFilters] = useState({ ...EMPTY_FILTERS, maxRent: query.get('max') ?? '' })
@@ -64,12 +66,15 @@ export function useHostelSearch() {
     })),
     acOnly && { label: 'AC only', remove: () => setFilter('acOnly', false) },
     gender !== 'Any' && { label: `${gender} hostels`, remove: () => setFilter('gender', 'Any') },
-    ...facilities.map((facility) => ({ label: facility, remove: () => toggleFilter('facilities', facility) })),
+    ...facilities.map((facility) => ({
+      label: facility,
+      remove: () => toggleFilter('facilities', facility),
+    })),
   ].filter(Boolean)
 
   return {
-    university,
-    setUniversity,
+    campus,
+    setCampus,
     text,
     setText,
     sort,

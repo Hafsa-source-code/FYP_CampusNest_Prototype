@@ -17,9 +17,9 @@ import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage'
 import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage'
 import { LogoutPage } from '@/pages/auth/LogoutPage'
 import { HostelSearchPage } from '@/pages/student/HostelSearchPage'
+import { HostelDetailPage } from '@/pages/student/HostelDetailPage'
 
 import { Landing } from '@/screens/Landing'
-import { HostelDetail } from '@/screens/HostelDetail'
 import { RoomDetail } from '@/screens/RoomDetail'
 import { Compare } from '@/screens/Compare'
 import { Wishlist } from '@/screens/Wishlist'
@@ -79,7 +79,7 @@ export const router = createBrowserRouter([
               {
                 path: PATHS.student.hostel,
                 handle: { section: 'search' },
-                element: <OldScreen render={(p) => <HostelDetail id={Number(p.id)} />} />,
+                element: <HostelDetailPage />,
               },
               {
                 path: PATHS.student.room,
