@@ -23,11 +23,11 @@ import { LogoutPage } from '@/pages/auth/LogoutPage'
 import { HostelSearchPage } from '@/pages/student/HostelSearchPage'
 import { HostelDetailPage } from '@/pages/student/HostelDetailPage'
 import { RoomDetailPage } from '@/pages/student/RoomDetailPage'
+import { MyInquiriesPage } from '@/pages/student/MyInquiriesPage'
 
 import { Landing } from '@/screens/Landing'
 import { Compare } from '@/screens/Compare'
 import { Wishlist } from '@/screens/Wishlist'
-import { MyInquiries } from '@/screens/MyInquiries'
 import { RoommateMatches } from '@/screens/RoommateMatches'
 import { RoommateProfile } from '@/screens/RoommateProfile'
 import { Community } from '@/screens/Community'
@@ -96,12 +96,12 @@ export const router = createBrowserRouter([
               {
                 path: PATHS.student.inquiries,
                 handle: { section: 'inquiries' },
-                element: <MyInquiries />,
+                element: <MyInquiriesPage />,
               },
               {
                 path: PATHS.student.inquiry,
                 handle: { section: 'inquiries' },
-                element: <OldScreen render={(p) => <MyInquiries selectedId={Number(p.id)} />} />,
+                element: <MyInquiriesPage />,
               },
               {
                 path: PATHS.student.roommates,
