@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import { EmptyState } from '@/components/feedback'
 import { useHostelReviews } from '../hooks/useHostelReviews'
-import { NoReviews } from './NoReviews'
 import { ReportReviewModal } from './ReportReviewModal'
 import { ReviewCard } from './ReviewCard'
 import { ReviewSummary } from './ReviewSummary'
@@ -10,7 +10,16 @@ export function HostelReviews({ hostelId, hostelName }) {
   const { reviews, total, summary } = useHostelReviews(hostelId)
   const [reporting, setReporting] = useState(null) // the review being reported
 
-  if (reviews.length === 0) return <NoReviews />
+  if (reviews.length === 0)
+    return (
+      <div className="rounded-xl border border-dashed border-line-strong bg-surface">
+        <EmptyState
+          icon="star"
+          title="No reviews yet"
+          description="Only students who have moved in can leave a review."
+        />
+      </div>
+    )
 
   return (
     <>

@@ -1,5 +1,17 @@
 import { Avatar, Icon, IconButton, Menu, Stars } from '@/components/ui'
-import { OwnerReply } from './OwnerReply'
+
+/** The owner's one public reply under a review. */
+function OwnerReply({ text }) {
+  return (
+    <div className="mt-4 rounded-md bg-sunken p-3.5">
+      <p className="flex items-center gap-1.5 text-small font-semibold text-ink">
+        <Icon name="message" size={13} />
+        Response from the owner
+      </p>
+      <p className="mt-1 text-body leading-relaxed text-muted">{text}</p>
+    </div>
+  )
+}
 
 /** One review: who wrote it, stars, text, the owner's reply, and a "Report" menu. */
 export function ReviewCard({ review, onReport }) {
@@ -27,4 +39,4 @@ export function ReviewCard({ review, onReport }) {
       {review.reply && <OwnerReply text={review.reply} />}
     </article>
   )
-}
+}   

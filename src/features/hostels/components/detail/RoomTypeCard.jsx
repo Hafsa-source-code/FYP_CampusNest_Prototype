@@ -1,6 +1,6 @@
 import { Badge, Button, Icon, Photo } from '@/components/ui'
 import { formatPrice } from '@/utils/formatters'
-import { SeatsLabel } from './SeatsLabel'
+import { SeatsLabel } from '../SeatsLabel'
 
 /** One room type (e.g. "3-Seater AC Room"): photo, facts, price per seat, "Choose a room". */
 export function RoomTypeCard({ roomType, onChoose }) {

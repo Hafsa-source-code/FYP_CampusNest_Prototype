@@ -1,26 +1,19 @@
-import { cn } from '@/utils/cn'
 import { Icon } from '@/components/ui'
 import { formatPrice } from '@/utils/formatters'
+import { HostelRating } from './HostelRating'
+import { SeatsLabel } from './SeatsLabel'
 
 /** The white panel at the bottom of a hostel card: name, rating, area, price, distance, seats. */
 export function HostelCardInfo({ hostel, children }) {
-  const isFull = hostel.freeSeats === 0
-
   return (
     <div className="absolute inset-x-3 bottom-3 rounded-lg bg-white/97 p-4 shadow-pop backdrop-blur">
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-title-sm font-semibold leading-snug tracking-tight text-ink">
           {hostel.name}
         </h3>
-        {hostel.rating > 0 ? (
-          <span className="tabular inline-flex shrink-0 items-center gap-1 text-small font-semibold text-ink">
-            <Icon name="star" size={13} filled className="text-star" strokeWidth={1.5} />
-            {hostel.rating.toFixed(1)}
-            <span className="font-normal text-muted">({hostel.reviewCount})</span>
-          </span>
-        ) : (
-          <span className="shrink-0 text-caption text-muted">New</span>
-        )}
+        <span className="shrink-0">
+          <HostelRating rating={hostel.rating} reviewCount={hostel.reviewCount} size="sm" />
+        </span>
       </div>
 
       <p className="mt-1 flex items-center gap-1 text-small text-muted">
@@ -38,13 +31,7 @@ export function HostelCardInfo({ hostel, children }) {
             <Icon name="walk" size={13} className="text-muted" />
             {hostel.distance} km
           </span>
-          <span
-            className={cn('inline-flex items-center gap-1', isFull && 'text-danger')}
-            title="Seats available"
-          >
-            <Icon name="bed" size={13} className={isFull ? undefined : 'text-muted'} />
-            {isFull ? 'Full' : hostel.freeSeats}
-          </span>
+          <SeatsLabel freeSeats={hostel.freeSeats} compact />
         </div>
       </div>
 

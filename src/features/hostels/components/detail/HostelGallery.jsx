@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import { Icon, Photo } from '@/components/ui'
+import { Icon, Modal, Photo } from '@/components/ui'
 import { cn } from '@/utils/cn'
-import { PhotosModal } from './PhotosModal'
 
 const PREVIEW_COUNT = 5
 
-/** Big photo + 4 small ones (only the big one on phones). Any photo opens all photos. */
+/** Big photo + 4 small ones (only the big one on phones). Any photo opens all photos in a pop-up. */
 export function HostelGallery({ hostelName, photos }) {
   const [showAll, setShowAll] = useState(false)
   const onlyOne = photos.length === 1
+  const photoAlt = (index) => `${hostelName} photo ${index + 1}`
 
   return (
     <div className="relative mt-6">
@@ -27,7 +27,7 @@ export function HostelGallery({ hostelName, photos }) {
           >
             <Photo
               src={src}
-              alt={`${hostelName} photo ${index + 1}`}
+              alt={photoAlt(index)}
               ratio="auto"
               rounded={false}
               className="h-full transition-opacity hover:opacity-90"
@@ -45,12 +45,24 @@ export function HostelGallery({ hostelName, photos }) {
         Show all {photos.length} photos
       </button>
 
-      <PhotosModal
+      <Modal
         open={showAll}
         onClose={() => setShowAll(false)}
-        hostelName={hostelName}
-        photos={photos}
-      />
+        title={`${hostelName} — photos`}
+        size="lg"
+      >
+        <div className="grid grid-cols-2 gap-2 pb-4">
+          {photos.map((src, index) => (
+            <Photo
+              key={src + index}
+              src={src}
+              alt={photoAlt(index)}
+              ratio="3/2"
+              className={index === 0 ? 'col-span-2' : undefined}
+            />
+          ))}
+        </div>
+      </Modal>
     </div>
   )
 }
