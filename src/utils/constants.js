@@ -10,3 +10,10 @@ export const USER_STATUS = {
   ACTIVE: 'Active',
   BANNED: 'Banned',
 }
+
+export const HOSTEL_STATUS = {
+  PENDING: 'Pending',
+  VERIFIED: 'Verified',
+  REJECTED: 'Rejected',
+  DEACTIVATED: 'Deactivated',
+}

@@ -16,9 +16,9 @@ import { SignupPage } from '@/pages/auth/SignupPage'
 import { ForgotPasswordPage } from '@/pages/auth/ForgotPasswordPage'
 import { ResetPasswordPage } from '@/pages/auth/ResetPasswordPage'
 import { LogoutPage } from '@/pages/auth/LogoutPage'
+import { HostelSearchPage } from '@/pages/student/HostelSearchPage'
 
 import { Landing } from '@/screens/Landing'
-import { HostelSearch } from '@/screens/HostelSearch'
 import { HostelDetail } from '@/screens/HostelDetail'
 import { RoomDetail } from '@/screens/RoomDetail'
 import { Compare } from '@/screens/Compare'
@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
               {
                 path: PATHS.student.search,
                 handle: { section: 'search' },
-                element: <HostelSearch />,
+                element: <HostelSearchPage />,
               },
               {
                 path: PATHS.student.hostel,

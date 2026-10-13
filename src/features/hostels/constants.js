@@ -1,6 +1,37 @@
-// Which icon each hostel facility uses. Facility names must match the fixed
-// facilities list (the backend's Facility table).
+// Fixed lists for the hostels feature. They must match the backend's lookup tables.
 
+/** Universities students can search near (the backend's University table). */
+export const UNIVERSITIES = ['PU New Campus', 'PU Old Campus']
+
+/** Room types, as shown to students → the value stored in the database. */
+export const ROOM_TYPE_OPTIONS = [
+  { label: 'Single', value: 'Single' },
+  { label: '2-seater', value: 'Twin' },
+  { label: '3-seater', value: '3-seater' },
+  { label: '4+ seater', value: '4-seater+' },
+]
+
+export const GENDER_OPTIONS = ['Any', 'Female', 'Male']
+
+/** Facilities students can filter by. */
+export const FILTER_FACILITIES = [
+  'Wi-Fi',
+  'Mess',
+  'Generator/UPS',
+  'Laundry',
+  'Security guard',
+  'Parking',
+]
+
+export const SORT_OPTIONS = {
+  NEAREST: 'Nearest first',
+  CHEAPEST: 'Lowest price',
+  TOP_RATED: 'Highest rated',
+}
+
+export const DISTANCE_LIMITS = { min: 0.5, max: 3, step: 0.5 }
+
+/** Which icon each facility uses. */
 export const FACILITY_ICONS = {
   'Wi-Fi': 'wifi',
   Mess: 'utensils',
