@@ -47,14 +47,14 @@ export function FilterPanel({ filters, setFilter, toggleFilter }) {
         </div>
       </FilterSection>
 
-    <FilterSection title="Room type">
-      <PillGroup
-        size="sm"
-        options={ROOM_TYPE_OPTIONS}
-        value={filters.roomTypes}
-        onChange={(type) => setFilter('roomTypes', type)}
-      />
-    </FilterSection>
+   <FilterSection title="Room type">
+  <PillGroup
+    size="sm"
+    options={ROOM_TYPE_OPTIONS}
+    value={filters.roomTypes}
+    onChange={(type) => toggleFilter('roomTypes', type)}
+  />
+</FilterSection>
 
       <FilterSection title="Hostel for">
         <PillGroup
