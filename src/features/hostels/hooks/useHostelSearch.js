@@ -11,7 +11,7 @@ const EMPTY_FILTERS = {
   maxRent: '',
   roomTypes: [],
   acOnly: false,
-  gender: 'Any',
+  gender: [],
   facilities: [],
 }
 

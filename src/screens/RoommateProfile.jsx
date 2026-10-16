@@ -13,6 +13,9 @@ import {
   toast,
 } from '../components/ui'
 const HOBBIES = [
+  'Hometown',
+  'Religion',
+  'Department/ Job type',
   'Reading',
   'Coding',
   'Badminton',
@@ -99,6 +102,13 @@ export function RoommateProfile() {
                   </div>
                 </div>
               </Row>
+             <Row title="Religion">
+              <Choice
+                options={['Muslim', 'Christian', 'Hindu', 'Other']}
+                value={p.religion}
+                onChange={(v) => set('religion', v)}
+              />
+            </Row>
               <Row title="Sleep schedule">
                 <Choice
                   options={['Early bird', 'Night owl', 'Flexible']}
@@ -182,6 +192,7 @@ export function RoommateProfile() {
             <dl className="mt-4 space-y-3 text-body">
               {[
                 ['Budget', `Rs ${p.budgetMin.toLocaleString()}–${p.budgetMax.toLocaleString()}`],
+                ['Religion',p.religion],
                 ['Sleep', p.sleep],
                 ['Study', p.study],
                 ['Cleanliness', `${p.cleanliness} / 5`],

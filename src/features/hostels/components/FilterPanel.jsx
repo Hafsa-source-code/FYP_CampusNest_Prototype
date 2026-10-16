@@ -31,14 +31,14 @@ export function FilterPanel({ filters, setFilter, toggleFilter }) {
       <FilterSection title="Rent per seat (Rs / month)">
         <div className="grid grid-cols-2 gap-2">
           <Input
-            placeholder="Min"
+            placeholder="Min: 15,000"
             inputMode="numeric"
             aria-label="Minimum rent"
             value={filters.minRent}
             onChange={(event) => setFilter('minRent', digitsOnly(event.target.value))}
           />
           <Input
-            placeholder="Max"
+            placeholder="Max: 30,000"
             inputMode="numeric"
             aria-label="Maximum rent"
             value={filters.maxRent}
@@ -47,22 +47,14 @@ export function FilterPanel({ filters, setFilter, toggleFilter }) {
         </div>
       </FilterSection>
 
-      <FilterSection title="Room type">
-        <PillGroup
-          size="sm"
-          options={ROOM_TYPE_OPTIONS}
-          value={filters.roomTypes}
-          onChange={(type) => toggleFilter('roomTypes', type)}
-        />
-        <div className="mt-4 flex items-center justify-between">
-          <span className="text-body text-ink">Air-conditioned only</span>
-          <Switch
-            checked={filters.acOnly}
-            onChange={(on) => setFilter('acOnly', on)}
-            label="Air-conditioned only"
-          />
-        </div>
-      </FilterSection>
+    <FilterSection title="Room type">
+      <PillGroup
+        size="sm"
+        options={ROOM_TYPE_OPTIONS}
+        value={filters.roomTypes}
+        onChange={(type) => setFilter('roomTypes', type)}
+      />
+    </FilterSection>
 
       <FilterSection title="Hostel for">
         <PillGroup

@@ -264,23 +264,23 @@ const seedHostels = [
 ]
 const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => String(a + i))
 const typeSeeds = [
-  [1, '2-Seater Standard', 'Twin', false, 13500, 2, range(101, 108), [1, 0, 1, 0, 0, 0, 0, 0]],
+  [1, '2-bed Standard', 'Twin', false, 13500, 2, range(101, 108), [1, 0, 1, 0, 0, 0, 0, 0]],
   [
     1,
-    '3-Seater AC Room',
-    '3-seater',
+    '3-bed AC Room',
+    '3-bed',
     true,
     15500,
     3,
     range(201, 210),
     [1, 0, 2, 1, 0, 0, 0, 0, 0, 0],
   ],
-  [1, '4-Seater Economy', '4-seater+', false, 12000, 4, range(301, 306), [0, 0, 0, 0, 0, 0]],
+  [1, '4-bed Economy', '4-bed+', false, 12000, 4, range(301, 306), [0, 0, 0, 0, 0, 0]],
   [2, 'Single AC Room', 'Single', true, 22000, 1, range(1, 6), [1, 0, 0, 0, 0, 0]],
-  [2, '2-Seater AC Room', 'Twin', true, 18000, 2, range(11, 18), [1, 0, 1, 0, 0, 0, 0, 0]],
+  [2, '2-bed AC Room', 'Twin', true, 18000, 2, range(11, 18), [1, 0, 1, 0, 0, 0, 0, 0]],
   [
     4,
-    '2-Seater Standard',
+    '2-bed Standard',
     'Twin',
     false,
     16800,
@@ -288,14 +288,14 @@ const typeSeeds = [
     range(101, 110),
     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
   ],
-  [4, '3-Seater AC Room', '3-seater', true, 17500, 3, range(201, 208), [0, 0, 0, 1, 0, 0, 0, 0]],
-  [5, '3-Seater Standard', '3-seater', false, 13500, 3, range(1, 8), [1, 0, 2, 0, 0, 1, 0, 0]],
-  [6, '2-Seater AC Room', 'Twin', true, 16000, 2, range(1, 10), [1, 0, 0, 1, 0, 0, 0, 0, 0, 0]],
-  [6, '4-Seater Standard', '4-seater+', false, 14200, 4, range(11, 16), [0, 2, 0, 1, 0, 0]],
-  [3, '3-Seater Standard', '3-seater', false, 12000, 3, range(1, 4), [3, 3, 3, 3]],
-  [7, '2-Seater Standard', 'Twin', false, 14500, 2, range(1, 6), [2, 2, 2, 2, 2, 2]],
-  [8, '4-Seater Standard', '4-seater+', false, 13000, 4, range(1, 2), [4, 4]],
-  [9, '2-Seater Standard', 'Twin', false, 14000, 2, range(1, 8), [2, 2, 2, 2, 2, 2, 2, 2]],
+  [4, '3-bed AC Room', '3-bed', true, 17500, 3, range(201, 208), [0, 0, 0, 1, 0, 0, 0, 0]],
+  [5, '3-bed Standard', '3-bed', false, 13500, 3, range(1, 8), [1, 0, 2, 0, 0, 1, 0, 0]],
+  [6, '2-bed AC Room', 'Twin', true, 16000, 2, range(1, 10), [1, 0, 0, 1, 0, 0, 0, 0, 0, 0]],
+  [6, '4-bed Standard', '4-bed+', false, 14200, 4, range(11, 16), [0, 2, 0, 1, 0, 0]],
+  [3, '3-bed Standard', '3-bed', false, 12000, 3, range(1, 4), [3, 3, 3, 3]],
+  [7, '2-bed Standard', 'Twin', false, 14500, 2, range(1, 6), [2, 2, 2, 2, 2, 2]],
+  [8, '4-bed Standard', '4-bed+', false, 13000, 4, range(1, 2), [4, 4]],
+  [9, '2-bed Standard', 'Twin', false, 14000, 2, range(1, 8), [2, 2, 2, 2, 2, 2, 2, 2]],
 ]
 const seedRoomTypes = []
 const seedRooms = []
@@ -424,7 +424,7 @@ const seedInquiries = [
       {
         id: 1,
         from: 'student',
-        text: "Assalam-o-Alaikum. I'm a third-year CS student at PU New Campus. Is a seat in the 3-seater AC room available from 1 October?",
+        text: "Assalam-o-Alaikum. I'm a third-year CS student at PU New Campus. Is a seat in the 3-bed AC room available from 1 October?",
         time: '12 Sep, 10:32',
       },
       {
@@ -457,7 +457,7 @@ const seedInquiries = [
       {
         id: 1,
         from: 'student',
-        text: 'Hello, I would like a seat in the 2-seater room from May.',
+        text: 'Hello, I would like a seat in the 2-bed room from May.',
         time: '3 Apr, 09:10',
       },
       {
@@ -483,7 +483,7 @@ const seedInquiries = [
       {
         id: 1,
         from: 'student',
-        text: 'Is the 2-seater available in April?',
+        text: 'Is the 2-bed available in April?',
         time: '20 Mar, 14:02',
       },
     ],
@@ -521,7 +521,7 @@ const seedInquiries = [
       {
         id: 1,
         from: 'student',
-        text: 'Salam, I am a first-year student. Can I see the 2-seater room this weekend?',
+        text: 'Salam, I am a first-year student. Can I see the 2-bed room this weekend?',
         time: '8 Sep, 18:44',
       },
     ],
@@ -798,7 +798,7 @@ const seedNotifications = [
   {
     id: 4,
     userId: 2,
-    text: 'New inquiry from Rida Malik for the 2-Seater Standard',
+    text: 'New inquiry from Rida Malik for the 2-bed Standard',
     time: '20m ago',
     unread: true,
     link: '/o/inquiries/5',
@@ -816,6 +816,7 @@ const seedProfile = {
   budgetMin: 12000,
   budgetMax: 18000,
   cleanliness: 4,
+  religion: 'Muslim',
   sleep: 'Night owl',
   study: 'Quiet',
   smoking: 'No',
@@ -1121,7 +1122,7 @@ export function StoreProvider({ children }) {
         const types = input.roomTypes.map((t, i) => ({
           id: hostelId + i + 1,
           hostelId,
-          name: `${t.type === 'Single' ? 'Single' : t.type === 'Twin' ? '2-Seater' : t.type === '3-seater' ? '3-Seater' : '4-Seater'}${t.ac ? ' AC' : ''} Room`,
+          name: `${t.type === 'Single' ? 'Single' : t.type === 'Twin' ? '2-bed' : t.type === '3-bed' ? '3-bed' : '4-bed'}${t.ac ? ' AC' : ''} Room`,
           type: t.type,
           ac: t.ac,
           price: t.price,

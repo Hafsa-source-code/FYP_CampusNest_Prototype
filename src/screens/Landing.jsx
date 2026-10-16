@@ -204,7 +204,7 @@ function Hero() {
               near Punjab University
             </p>
             <h1 className="mt-6 tracking-tight text-display sm:text-display-lg lg:text-display-lg leading-[1.08] font-semibold">
-              Find a hostel near PU that feels like <span className="text-[#5DB7E8]">home.</span>
+              Find A Hostel Near Punjab University That Feels Like <span className="text-[#5DB7E8]">Home.</span>
             </h1>
             <p className="mt-5 text-lead leading-relaxed text-white/80 max-w-[440px]">
               Compare rent, distance to campus and reviews from real students — every hostel checked

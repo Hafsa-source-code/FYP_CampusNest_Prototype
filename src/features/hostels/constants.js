@@ -9,15 +9,16 @@ export const CAMPUS_PARAM = 'uni'
 /** Room types, as shown to students → the value stored in the database. */
 export const ROOM_TYPE_OPTIONS = [
   { label: 'Single', value: 'Single' },
-  { label: '2-seater', value: 'Twin' },
-  { label: '3-seater', value: '3-seater' },
-  { label: '4+ seater', value: '4-seater+' },
+  { label: '2-bed', value: 'Twin' },
+  { label: '3-bed', value: '3-bed' },
+  { label: '4+ bed', value: '4-bed+' },
 ]
 
 export const GENDER_OPTIONS = ['Any', 'Female', 'Male']
 
 /** Facilities students can filter by. */
 export const FILTER_FACILITIES = [
+  'AC',
   'Wi-Fi',
   'Mess',
   'Generator/UPS',
@@ -32,7 +33,7 @@ export const SORT_OPTIONS = {
   TOP_RATED: 'Highest rated',
 }
 
-export const DISTANCE_LIMITS = { min: 0.5, max: 3, step: 0.5 }
+export const DISTANCE_LIMITS = { min: 0.5, max: 5, step: 0.5 }
 
 /** Which icon each facility uses. */
 export const FACILITY_ICONS = {
